@@ -84,15 +84,8 @@ df2 = pd.DataFrame(e)
 df2 = df2.astype(int)
 result =  pd.merge(df1, df2, on='press', indicator=True)
 result.set_index('press', inplace=True)
-a = [1002, 970, 954, 908, 840, 818, 745, 706, 669, 600, 568, 537, 507, 475, 452, 426, 402,
-    375, 356, 335, 296, 277, 243, 227, 198, 172, 149, 120, 103]
 result = result[result['_merge'] == 'both']
-#result = result[result['press'].isin(a)]
-#result = result.where(result['_merge'] == True, np.nan)
-#with pd.option_context('display.max_rows', None, 'display.max_columns', 7):
-#    print(result)
 result = result.groupby('press').mean()
-#result['_merge']
 
 result = result.reset_index()
 
